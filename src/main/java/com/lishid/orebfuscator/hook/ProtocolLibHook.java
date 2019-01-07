@@ -51,6 +51,9 @@ public class ProtocolLibHook {
             @Override
             public void onPacketReceiving(PacketEvent event) {
                 if (event.getPacketID() == Packets.Client.BLOCK_DIG) {
+                    //com.comphenix.protocol.reflect.FieldAccessException: No field with type 
+                    //net.minecraft.server.v1_8_R3.PacketPlayInBlockDig$EnumPlayerDigType exists 
+                    //in class PacketPlayInWindowClick.
                     EnumPlayerDigType status = event.getPacket().getSpecificModifier(EnumPlayerDigType.class).read(0);
                     if (status == EnumPlayerDigType.ABORT_DESTROY_BLOCK) {
                         if (!BlockHitManager.hitBlock(event.getPlayer(), null)) {
